@@ -452,5 +452,22 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Kiểm thử Cấu trúc HTML')
+    @allure.title('TC_UTC_20: Kiểm tra thuộc tính href của thẻ <a> Quên mật khẩu')
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_tc20_html_forgot_password_href(self):
+        tc_id = 'TC_UTC_20'
+        name = 'Kiểm tra thuộc tính href của thẻ <a> Quên mật khẩu'
+        technique = 'Kiểm thử liên kết điều hướng HTML Hyperlink'
+        steps = '1. Mở trang Login\n2. Đọc thuộc tính href của thẻ <a> Quên mật khẩu\n3. Xác minh đường dẫn'
+        test_data = "Thẻ a[href='/Login/GetPass']"
+        expected = 'Thuộc tính href trỏ tới /Login/GetPass'
+        self.login_page.navigate()
+        href = self.login_page.get_forgot_password_href()
+        is_pass = '/Login/GetPass' in href
+        actual = f'Href liên kết chính xác: {href}' if is_pass else 'Href liên kết sai'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
