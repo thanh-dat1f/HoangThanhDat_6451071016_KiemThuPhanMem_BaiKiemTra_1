@@ -399,5 +399,23 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Kiểm thử Cấu trúc HTML')
+    @allure.title('TC_UTC_17: Kiểm tra thuộc tính placeholder của các ô input')
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_tc17_html_input_placeholders(self):
+        tc_id = 'TC_UTC_17'
+        name = 'Kiểm tra thuộc tính placeholder của các ô input'
+        technique = 'Kiểm thử giao diện & Trải nghiệm người dùng (HTML UI)'
+        steps = '1. Mở trang Login\n2. Đọc placeholder của ô username và userpwd\n3. Xác minh có hướng dẫn rõ ràng'
+        test_data = 'Ô username và ô userpwd'
+        expected = "Ô username chứa 'Tên đăng nhập', ô userpwd chứa 'Mật khẩu'"
+        self.login_page.navigate()
+        u_ph = self.login_page.get_username_placeholder()
+        p_ph = self.login_page.get_password_placeholder()
+        is_pass = 'Tên đăng nhập' in u_ph and 'Mật khẩu' in p_ph
+        actual = f"Placeholder hợp lệ: '{u_ph}' và '{p_ph}'" if is_pass else 'Placeholder thiếu hoặc sai'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
