@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+screenshots/
+reports/
+allure-results/
+allure-report/
+*.log
+.env
+venv/
+.venv/
