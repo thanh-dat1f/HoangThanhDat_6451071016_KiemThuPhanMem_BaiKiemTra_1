@@ -488,5 +488,24 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass, actual)
 
+    @allure.story('Kiểm thử Khẳng Định Bắt Lỗi')
+    @allure.title('TC_UTC_22: Cố tình kỳ vọng tài khoản ảo đăng nhập thành công (Kỳ vọng FAIL 2)')
+    @allure.severity(allure.severity_level.CRITICAL)
+    def test_tc22_fail_expect_login_success_with_dummy_account(self):
+        tc_id = 'TC_UTC_22'
+        name = 'Cố tình kỳ vọng tài khoản ảo đăng nhập thành công vào Dashboard'
+        technique = 'Kiểm thử bảo mật truy cập & Bắt lỗi phân quyền (Security & Fault Injection)'
+        steps = "1. Mở trang Login\n2. Nhập tài khoản ảo 'tai_khoan_ao_12345' và mật khẩu 'mat_khau_sai_999'\n3. Bấm Đăng nhập\n4. Khẳng định URL chuyển sang /Dashboard"
+        test_data = "username='tai_khoan_ao_12345', password='mat_khau_sai_999'"
+        expected = 'Hệ thống chấp nhận đăng nhập và chuyển hướng vào /Dashboard (Kỳ vọng cố tình sai)'
+        self.login_page.navigate()
+        time.sleep(1)
+        self.login_page.login('tai_khoan_ao_12345', 'mat_khau_sai_999')
+        time.sleep(2)
+        current_url = self.driver.current_url
+        is_pass = '/Dashboard' in current_url
+        actual = f'Đã chuyển sang Dashboard: {current_url}' if is_pass else f"LỖI PHÁT HIỆN: Hệ thống chặn lại tại '{current_url}', không cho phép vào /Dashboard như kỳ vọng giả định"
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass, actual)
 if __name__ == '__main__':
     unittest.main()
