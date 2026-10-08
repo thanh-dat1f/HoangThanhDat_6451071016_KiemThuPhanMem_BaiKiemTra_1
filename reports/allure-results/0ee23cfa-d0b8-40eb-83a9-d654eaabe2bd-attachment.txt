@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_20
+Kỹ thuật áp dụng : Kiểm thử liên kết điều hướng HTML Hyperlink
+Dữ liệu thử nghiệm: Thẻ a[href='/Login/GetPass']
+Các bước thực hiện:
+1. Mở trang Login
+2. Đọc thuộc tính href của thẻ <a> Quên mật khẩu
+3. Xác minh đường dẫn
+
+Kết quả mong đợi : Thuộc tính href trỏ tới /Login/GetPass
+Kết quả thực tế  : Href liên kết chính xác: https://vanphongdientu.utc.edu.vn/Login/GetPass
+Trạng thái       : PASS

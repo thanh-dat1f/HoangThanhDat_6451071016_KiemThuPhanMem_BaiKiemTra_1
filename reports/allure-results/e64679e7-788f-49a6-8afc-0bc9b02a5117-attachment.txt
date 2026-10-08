@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_02
+Kỹ thuật áp dụng : Phân tích giá trị biên & Kiểm tra tính hợp lệ dữ liệu
+Dữ liệu thử nghiệm: username='', userpwd=''
+Các bước thực hiện:
+1. Mở trang Login
+2. Bỏ trống cả 2 ô username & password
+3. Bấm Đăng nhập
+
+Kết quả mong đợi : Từ chối đăng nhập, duy trì ở màn hình Login
+Kết quả thực tế  : Hệ thống giữ nguyên tại trang đăng nhập, ngăn truy cập trái phép
+Trạng thái       : PASS

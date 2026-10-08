@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_16
+Kỹ thuật áp dụng : Kiểm thử cấu trúc & thuộc tính thẻ HTML Form
+Dữ liệu thử nghiệm: Thẻ <form> đăng nhập
+Các bước thực hiện:
+1. Mở trang Login
+2. Đọc thuộc tính action và method của thẻ form
+3. Xác minh an toàn dữ liệu
+
+Kết quả mong đợi : Form sử dụng method='post' và action trỏ tới endpoint /Login
+Kết quả thực tế  : Form chuẩn bảo mật: method='post', action='https://vanphongdientu.utc.edu.vn/Login'
+Trạng thái       : PASS

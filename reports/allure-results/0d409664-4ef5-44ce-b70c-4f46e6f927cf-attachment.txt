@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_04
+Kỹ thuật áp dụng : Đoán lỗi (Error Guessing)
+Dữ liệu thử nghiệm: username='user_khong_ton_tai_utc_99999', userpwd='Password123!'
+Các bước thực hiện:
+1. Mở trang Login
+2. Nhập tài khoản giả lập không tồn tại
+3. Bấm Đăng nhập
+
+Kết quả mong đợi : Hệ thống từ chối đăng nhập và không chuyển tiếp vào dashboard
+Kết quả thực tế  : Hệ thống từ chối người dùng không tồn tại
+Trạng thái       : PASS

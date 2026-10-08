@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_08
+Kỹ thuật áp dụng : Phân vùng tương đương (EP - Format không hợp lệ)
+Dữ liệu thử nghiệm: email='email_khong_hop_le_utc', captcha='12345'
+Các bước thực hiện:
+1. Mở trang /Login/GetPass
+2. Nhập chuỗi email thiếu @ và domain
+3. Nhấn Tiếp tục
+
+Kết quả mong đợi : Hệ thống từ chối xử lý định dạng email sai
+Kết quả thực tế  : Hệ thống từ chối email không đúng chuẩn
+Trạng thái       : PASS

@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_21
+Kỹ thuật áp dụng : Kiểm thử khẳng định giao diện & Phát hiện lỗi (Fault Injection Assertion)
+Dữ liệu thử nghiệm: Expected Title = 'Hệ Thống Đào Tạo Trực Tuyến Toàn Diện UTC 2099'
+Các bước thực hiện:
+1. Mở trang Login
+2. Đọc tiêu đề trang web (document.title)
+3. Khẳng định tiêu đề phải khớp với chuỗi giả định sai
+
+Kết quả mong đợi : Tiêu đề trang phải là 'Hệ Thống Đào Tạo Trực Tuyến Toàn Diện UTC 2099'
+Kết quả thực tế  : LỖI PHÁT HIỆN: Tiêu đề thực tế là 'Đăng nhập', không khớp với kỳ vọng 'Hệ Thống Đào Tạo Trực Tuyến Toàn Diện UTC 2099'
+Trạng thái       : FAIL

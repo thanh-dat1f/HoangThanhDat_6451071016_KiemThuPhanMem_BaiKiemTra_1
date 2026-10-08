@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_11
+Kỹ thuật áp dụng : Kiểm thử an ninh bảo mật (XSS Prevention)
+Dữ liệu thử nghiệm: username="<script>alert('XSS_UTC')</script>", userpwd='123'
+Các bước thực hiện:
+1. Mở trang Login
+2. Nhập payload script độc hại vào ô username
+3. Gửi form và kiểm tra Alert
+
+Kết quả mong đợi : Trình duyệt không bị kích hoạt popup Alert chứa mã độc script
+Kết quả thực tế  : Không bị kích hoạt hộp thoại script độc hại
+Trạng thái       : PASS
