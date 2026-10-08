@@ -335,5 +335,28 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Kiểm thử Liên kết & Chuyển hướng')
+    @allure.title("TC_UTC_14: Điều hướng từ 'Quên mật khẩu' quay về 'Đăng nhập'")
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_tc14_back_to_login_navigation(self):
+        tc_id = 'TC_UTC_14'
+        name = "Điều hướng từ 'Quên mật khẩu' quay về 'Đăng nhập'"
+        technique = 'Kiểm thử luồng điều hướng trang (Navigation Flow)'
+        steps = "1. Mở trang /Login/GetPass\n2. Click liên kết 'Trở lại đăng nhập?'\n3. Kiểm tra URL"
+        test_data = "Liên kết 'Trở lại đăng nhập?'"
+        expected = 'Trình duyệt quay trở về đúng địa chỉ /Login'
+        with allure.step('1. Mở trang Quên mật khẩu'):
+            self.getpass_page.navigate()
+            time.sleep(1)
+        with allure.step("2. Click liên kết 'Trở lại đăng nhập?'"):
+            self.getpass_page.click_back_to_login()
+            time.sleep(2)
+        with allure.step('3. Kiểm tra URL chuyển về trang Login'):
+            curr_url = self.getpass_page.get_current_url()
+            is_pass = curr_url.rstrip('/').endswith('/Login')
+            actual = f'Điều hướng chính xác về {curr_url}' if is_pass else 'Điều hướng sai trang'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
