@@ -435,5 +435,22 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Kiểm thử Cấu trúc HTML')
+    @allure.title("TC_UTC_19: Kiểm tra thuộc tính type='password' che giấu ký tự")
+    @allure.severity(allure.severity_level.CRITICAL)
+    def test_tc19_html_password_type(self):
+        tc_id = 'TC_UTC_19'
+        name = "Kiểm tra thuộc tính type='password' che giấu ký tự"
+        technique = 'Kiểm thử thuộc tính an toàn trường mật khẩu (HTML Security)'
+        steps = "1. Mở trang Login\n2. Đọc thuộc tính type của thẻ input mật khẩu\n3. Xác minh là 'password'"
+        test_data = "Thẻ input name='userpwd'"
+        expected = "Thuộc tính type của thẻ là 'password'"
+        self.login_page.navigate()
+        p_type = self.login_page.get_password_input_type()
+        is_pass = p_type == 'password'
+        actual = f"Thẻ input mật khẩu có type='{p_type}' an toàn" if is_pass else 'Thuộc tính type không an toàn'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
