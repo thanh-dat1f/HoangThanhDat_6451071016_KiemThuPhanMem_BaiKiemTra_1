@@ -218,5 +218,30 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Kiểm thử An ninh & Bảo mật')
+    @allure.title('TC_UTC_09: Kiểm thử phòng vệ tấn công SQL Injection')
+    @allure.severity(allure.severity_level.BLOCKER)
+    def test_tc09_sql_injection_defense(self):
+        tc_id = 'TC_UTC_09'
+        name = 'Kiểm thử phòng vệ tấn công SQL Injection'
+        technique = 'Kiểm thử an ninh bảo mật (Security Testing)'
+        steps = '1. Mở trang Login\n2. Nhập SQL Injection payload vào ô username\n3. Bấm Đăng nhập'
+        test_data = 'username="\' OR \'1\'=\'1\' --", userpwd=\'anypassword\''
+        expected = 'Hệ thống không bị sập cú pháp SQL, không lộ dữ liệu database, ở lại trang Login'
+        with allure.step('1. Mở trang Login'):
+            self.login_page.navigate()
+            time.sleep(1)
+        with allure.step('2. Gửi payload SQL Injection kinh điển'):
+            self.login_page.login("' OR '1'='1' --", 'anypassword')
+            time.sleep(2)
+        with allure.step('3. Kiểm tra không bị lộ lỗi Database và không bypass thành công'):
+            source = self.login_page.get_page_source().lower()
+            no_sql_leak = not any((err in source for err in ['sql syntax', 'mysql_fetch', 'database error', 'ora-']))
+            in_login = 'Login' in self.login_page.get_current_url()
+            is_pass = no_sql_leak and in_login
+            actual = 'An toàn trước tấn công SQL Injection cơ bản' if is_pass else 'Lộ lỗi SQL cú pháp'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
