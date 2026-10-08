@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_05
+Kỹ thuật áp dụng : Kiểm thử tương tác thành phần giao diện (UI Control)
+Dữ liệu thử nghiệm: Checkbox #persistent
+Các bước thực hiện:
+1. Mở trang Login
+2. Click vào checkbox 'Giữ tôi luôn đăng nhập'
+3. Kiểm tra trạng thái is_selected
+
+Kết quả mong đợi : Checkbox được tích chọn thành công (is_selected = True)
+Kết quả thực tế  : Checkbox đã được tích chọn
+Trạng thái       : PASS

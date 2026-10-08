@@ -1,0 +1,12 @@
+Mã Test Case : TC_UTC_22
+Kỹ thuật áp dụng : Kiểm thử bảo mật truy cập & Bắt lỗi phân quyền (Security & Fault Injection)
+Dữ liệu thử nghiệm: username='tai_khoan_ao_12345', password='mat_khau_sai_999'
+Các bước thực hiện:
+1. Mở trang Login
+2. Nhập tài khoản ảo 'tai_khoan_ao_12345' và mật khẩu 'mat_khau_sai_999'
+3. Bấm Đăng nhập
+4. Khẳng định URL chuyển sang /Dashboard
+
+Kết quả mong đợi : Hệ thống chấp nhận đăng nhập và chuyển hướng vào /Dashboard (Kỳ vọng cố tình sai)
+Kết quả thực tế  : LỖI PHÁT HIỆN: Hệ thống chặn lại tại 'https://vanphongdientu.utc.edu.vn/Login', không cho phép vào /Dashboard như kỳ vọng giả định
+Trạng thái       : FAIL

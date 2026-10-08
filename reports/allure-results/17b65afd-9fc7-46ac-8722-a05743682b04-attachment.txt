@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_18
+Kỹ thuật áp dụng : Kiểm thử phần tử nút bấm HTML
+Dữ liệu thử nghiệm: Thẻ input[type='submit']
+Các bước thực hiện:
+1. Mở trang Login
+2. Kiểm tra thuộc tính value của nút Đăng nhập
+3. Kiểm tra trạng thái is_enabled
+
+Kết quả mong đợi : Nút có value='Đăng nhập' và ở trạng thái enabled
+Kết quả thực tế  : Nút có value='Đăng nhập' và enabled=True
+Trạng thái       : PASS

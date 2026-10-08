@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_19
+Kỹ thuật áp dụng : Kiểm thử thuộc tính an toàn trường mật khẩu (HTML Security)
+Dữ liệu thử nghiệm: Thẻ input name='userpwd'
+Các bước thực hiện:
+1. Mở trang Login
+2. Đọc thuộc tính type của thẻ input mật khẩu
+3. Xác minh là 'password'
+
+Kết quả mong đợi : Thuộc tính type của thẻ là 'password'
+Kết quả thực tế  : Thẻ input mật khẩu có type='password' an toàn
+Trạng thái       : PASS

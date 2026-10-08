@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_01
+Kỹ thuật áp dụng : Phân vùng tương đương (EP - Hợp lệ)
+Dữ liệu thử nghiệm: username='cb_giangvien', userpwd='MatKhau@123'
+Các bước thực hiện:
+1. Mở trang Login
+2. Nhập username, password hợp lệ
+3. Bấm Đăng nhập
+
+Kết quả mong đợi : Hệ thống tiếp nhận yêu cầu, xử lý và phản hồi HTTP 200 (không lỗi 500)
+Kết quả thực tế  : Hệ thống phản hồi bình thường, không phát sinh lỗi 500
+Trạng thái       : PASS

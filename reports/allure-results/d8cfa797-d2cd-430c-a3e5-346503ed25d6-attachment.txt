@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_12
+Kỹ thuật áp dụng : Kiểm thử bảo mật giao diện người dùng
+Dữ liệu thử nghiệm: Trường input name='userpwd'
+Các bước thực hiện:
+1. Mở trang Login
+2. Kiểm tra thuộc tính 'type' của thẻ input mật khẩu
+3. Đảm bảo là type='password'
+
+Kết quả mong đợi : Thuộc tính type của thẻ là 'password' để ẩn ký tự khi nhập
+Kết quả thực tế  : Trường mật khẩu có type='password' an toàn
+Trạng thái       : PASS

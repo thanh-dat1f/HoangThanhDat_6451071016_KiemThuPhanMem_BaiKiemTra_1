@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_14
+Kỹ thuật áp dụng : Kiểm thử luồng điều hướng trang (Navigation Flow)
+Dữ liệu thử nghiệm: Liên kết 'Trở lại đăng nhập?'
+Các bước thực hiện:
+1. Mở trang /Login/GetPass
+2. Click liên kết 'Trở lại đăng nhập?'
+3. Kiểm tra URL
+
+Kết quả mong đợi : Trình duyệt quay trở về đúng địa chỉ /Login
+Kết quả thực tế  : Điều hướng chính xác về https://vanphongdientu.utc.edu.vn/Login
+Trạng thái       : PASS

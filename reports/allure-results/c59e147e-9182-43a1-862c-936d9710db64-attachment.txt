@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_13
+Kỹ thuật áp dụng : Kiểm thử khả năng tiếp cận & Phím tắt (Accessibility & UX)
+Dữ liệu thử nghiệm: username='test_enter_user', userpwd='test_enter_pwd' + Keys.ENTER
+Các bước thực hiện:
+1. Mở trang Login
+2. Nhập thông tin và bấm Enter tại ô password
+3. Kiểm tra form được submit
+
+Kết quả mong đợi : Hệ thống chấp nhận phím Enter tương đương nút Đăng nhập
+Kết quả thực tế  : Form tiếp nhận phím ENTER và gửi yêu cầu xác thực thành công
+Trạng thái       : PASS
