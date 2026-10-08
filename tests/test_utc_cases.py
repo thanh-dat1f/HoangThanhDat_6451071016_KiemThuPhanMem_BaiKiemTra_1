@@ -469,5 +469,24 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Kiểm thử Khẳng Định Bắt Lỗi')
+    @allure.title('TC_UTC_21: Cố tình kiểm tra sai tiêu đề trang web (Kỳ vọng FAIL 1)')
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_tc21_fail_expect_incorrect_page_title(self):
+        tc_id = 'TC_UTC_21'
+        name = 'Kiểm tra tiêu đề trang web (Kịch bản giả định sai - Cố tình FAIL)'
+        technique = 'Kiểm thử khẳng định giao diện & Phát hiện lỗi (Fault Injection Assertion)'
+        steps = '1. Mở trang Login\n2. Đọc tiêu đề trang web (document.title)\n3. Khẳng định tiêu đề phải khớp với chuỗi giả định sai'
+        test_data = "Expected Title = 'Hệ Thống Đào Tạo Trực Tuyến Toàn Diện UTC 2099'"
+        expected = "Tiêu đề trang phải là 'Hệ Thống Đào Tạo Trực Tuyến Toàn Diện UTC 2099'"
+        self.login_page.navigate()
+        time.sleep(1)
+        actual_title = self.driver.title
+        expected_wrong_title = 'Hệ Thống Đào Tạo Trực Tuyến Toàn Diện UTC 2099'
+        is_pass = actual_title == expected_wrong_title
+        actual = f"Tiêu đề khớp: '{actual_title}'" if is_pass else f"LỖI PHÁT HIỆN: Tiêu đề thực tế là '{actual_title}', không khớp với kỳ vọng '{expected_wrong_title}'"
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass, actual)
+
 if __name__ == '__main__':
     unittest.main()
