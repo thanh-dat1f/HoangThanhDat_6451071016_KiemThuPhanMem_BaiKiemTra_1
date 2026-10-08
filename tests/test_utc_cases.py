@@ -195,5 +195,28 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Chức năng Quên mật khẩu')
+    @allure.title('TC_UTC_08: Quên mật khẩu: Kiểm tra nhập Email sai định dạng')
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_tc08_getpass_invalid_email(self):
+        tc_id = 'TC_UTC_08'
+        name = 'Quên mật khẩu: Kiểm tra nhập Email sai định dạng'
+        technique = 'Phân vùng tương đương (EP - Format không hợp lệ)'
+        steps = '1. Mở trang /Login/GetPass\n2. Nhập chuỗi email thiếu @ và domain\n3. Nhấn Tiếp tục'
+        test_data = "email='email_khong_hop_le_utc', captcha='12345'"
+        expected = 'Hệ thống từ chối xử lý định dạng email sai'
+        with allure.step('1. Mở trang Quên mật khẩu'):
+            self.getpass_page.navigate()
+            time.sleep(1)
+        with allure.step('2. Nhập email sai định dạng'):
+            self.getpass_page.submit_getpass('email_khong_hop_le_utc', '12345')
+            time.sleep(2)
+        with allure.step('3. Kiểm tra hệ thống từ chối'):
+            curr_url = self.getpass_page.get_current_url()
+            is_pass = 'Getpass' in curr_url or 'GetPass' in curr_url
+            actual = 'Hệ thống từ chối email không đúng chuẩn' if is_pass else 'Chấp nhận email sai định dạng'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
