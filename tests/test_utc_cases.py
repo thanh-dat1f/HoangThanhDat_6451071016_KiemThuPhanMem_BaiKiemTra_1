@@ -86,5 +86,27 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Chức năng Đăng nhập')
+    @allure.title('TC_UTC_03: Đăng nhập thất bại khi nhập sai mật khẩu')
+    @allure.severity(allure.severity_level.CRITICAL)
+    def test_tc03_login_wrong_password(self):
+        tc_id = 'TC_UTC_03'
+        name = 'Đăng nhập thất bại khi nhập sai mật khẩu'
+        technique = 'Phân vùng tương đương (EP - Không hợp lệ)'
+        steps = '1. Mở trang Login\n2. Nhập tài khoản và mật khẩu sai\n3. Bấm Đăng nhập'
+        test_data = "username='sinhvien_utc', userpwd='SaiMatKhau999'"
+        expected = 'Từ chối xác thực, không cấp quyền vào hệ thống'
+        with allure.step('1. Mở trang Login'):
+            self.login_page.navigate()
+            time.sleep(1)
+        with allure.step('2. Nhập mật khẩu sai và gửi form'):
+            self.login_page.login('sinhvien_utc', 'SaiMatKhau999')
+            time.sleep(2)
+        with allure.step('3. Kiểm tra hệ thống từ chối xác thực'):
+            is_pass = 'Login' in self.login_page.get_current_url()
+            actual = 'Chặn đăng nhập thành công, giữ tại màn hình Login' if is_pass else 'Vào được hệ thống trái phép'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
