@@ -313,5 +313,27 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Trải nghiệm người dùng (UX & Accessibility)')
+    @allure.title('TC_UTC_13: Kiểm tra gửi form đăng nhập bằng phím ENTER')
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_tc13_keyboard_enter_submit(self):
+        tc_id = 'TC_UTC_13'
+        name = 'Kiểm tra gửi form đăng nhập bằng phím ENTER'
+        technique = 'Kiểm thử khả năng tiếp cận & Phím tắt (Accessibility & UX)'
+        steps = '1. Mở trang Login\n2. Nhập thông tin và bấm Enter tại ô password\n3. Kiểm tra form được submit'
+        test_data = "username='test_enter_user', userpwd='test_enter_pwd' + Keys.ENTER"
+        expected = 'Hệ thống chấp nhận phím Enter tương đương nút Đăng nhập'
+        with allure.step('1. Mở trang Login'):
+            self.login_page.navigate()
+            time.sleep(1)
+        with allure.step('2. Nhập thông tin và gửi form bằng phím ENTER'):
+            self.login_page.submit_with_enter('test_enter_user', 'test_enter_pwd')
+            time.sleep(2)
+        with allure.step('3. Kiểm tra phản hồi submit'):
+            is_pass = 'Login' in self.login_page.get_current_url()
+            actual = 'Form tiếp nhận phím ENTER và gửi yêu cầu xác thực thành công' if is_pass else 'Phím Enter không hoạt động'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
