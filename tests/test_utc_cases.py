@@ -358,5 +358,28 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Kiểm thử Giá trị biên & Ứng suất (Boundary & Stress)')
+    @allure.title('TC_UTC_15: Kiểm thử giá trị biên: Tên đăng nhập 500 ký tự')
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_tc15_long_input_boundary(self):
+        tc_id = 'TC_UTC_15'
+        name = 'Kiểm thử giá trị biên: Tên đăng nhập 500 ký tự'
+        technique = 'Phân tích giá trị biên (Boundary Value Analysis)'
+        steps = "1. Mở trang Login\n2. Nhập chuỗi 500 ký tự 'A' vào username\n3. Gửi form và kiểm tra server"
+        test_data = "username='A' * 500, userpwd='123'"
+        expected = 'Hệ thống chịu tải tốt chuỗi cực dài, không phát sinh lỗi 500 Crash'
+        with allure.step('1. Mở trang Login'):
+            self.login_page.navigate()
+            time.sleep(1)
+        with allure.step('2. Nhập 500 ký tự vào ô username'):
+            self.login_page.login('A' * 500, '123456')
+            time.sleep(2)
+        with allure.step('3. Kiểm tra máy chủ không bị crash 500'):
+            source = self.login_page.get_page_source()
+            is_pass = '500 Internal Server Error' not in source
+            actual = 'Máy chủ xử lý an toàn chuỗi 500 ký tự, không bị sập dịch vụ' if is_pass else 'Máy chủ gặp lỗi 500'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
