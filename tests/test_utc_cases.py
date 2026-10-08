@@ -172,5 +172,28 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Chức năng Quên mật khẩu')
+    @allure.title('TC_UTC_07: Quên mật khẩu: Báo lỗi khi nhập sai mã Captcha')
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_tc07_getpass_invalid_captcha(self):
+        tc_id = 'TC_UTC_07'
+        name = 'Quên mật khẩu: Báo lỗi khi nhập sai mã Captcha'
+        technique = 'Kiểm thử logic xác thực bảo mật'
+        steps = '1. Mở trang /Login/GetPass\n2. Nhập email và mã captcha sai\n3. Nhấn Tiếp tục'
+        test_data = "email='sinhvien@utc.edu.vn', captcha='00000_SAI'"
+        expected = 'Từ chối cấp lại mật khẩu, duy trì tại trang GetPass'
+        with allure.step('1. Mở trang Quên mật khẩu'):
+            self.getpass_page.navigate()
+            time.sleep(1)
+        with allure.step('2. Nhập email đúng và Captcha sai cố ý'):
+            self.getpass_page.submit_getpass('sinhvien@utc.edu.vn', '00000_SAI')
+            time.sleep(2)
+        with allure.step('3. Kiểm tra chặn cấp lại mật khẩu'):
+            curr_url = self.getpass_page.get_current_url()
+            is_pass = 'Getpass' in curr_url or 'GetPass' in curr_url
+            actual = 'Chặn thành công yêu cầu khi mã captcha sai' if is_pass else 'Yêu cầu được thực thi sai nguyên tắc'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
