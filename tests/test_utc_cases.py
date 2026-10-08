@@ -293,5 +293,25 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Kiểm thử An ninh & Bảo mật')
+    @allure.title('TC_UTC_12: Kiểm tra thuộc tính che giấu ký tự mật khẩu (Masking)')
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_tc12_password_masking(self):
+        tc_id = 'TC_UTC_12'
+        name = 'Kiểm tra thuộc tính che giấu ký tự mật khẩu (Masking)'
+        technique = 'Kiểm thử bảo mật giao diện người dùng'
+        steps = "1. Mở trang Login\n2. Kiểm tra thuộc tính 'type' của thẻ input mật khẩu\n3. Đảm bảo là type='password'"
+        test_data = "Trường input name='userpwd'"
+        expected = "Thuộc tính type của thẻ là 'password' để ẩn ký tự khi nhập"
+        with allure.step('1. Mở trang Login'):
+            self.login_page.navigate()
+            time.sleep(1)
+        with allure.step('2. Kiểm tra thuộc tính type ô mật khẩu'):
+            field_type = self.login_page.get_password_input_type()
+            is_pass = field_type == 'password'
+            actual = f"Trường mật khẩu có type='{field_type}' an toàn" if is_pass else 'Mật khẩu không được che giấu'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
