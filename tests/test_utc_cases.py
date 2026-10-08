@@ -130,5 +130,26 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Giao diện người dùng (UI Controls)')
+    @allure.title("TC_UTC_05: Kiểm tra thao tác Checkbox 'Giữ tôi luôn đăng nhập'")
+    @allure.severity(allure.severity_level.MINOR)
+    def test_tc05_remember_me_checkbox(self):
+        tc_id = 'TC_UTC_05'
+        name = "Kiểm tra thao tác Checkbox 'Giữ tôi luôn đăng nhập'"
+        technique = 'Kiểm thử tương tác thành phần giao diện (UI Control)'
+        steps = "1. Mở trang Login\n2. Click vào checkbox 'Giữ tôi luôn đăng nhập'\n3. Kiểm tra trạng thái is_selected"
+        test_data = 'Checkbox #persistent'
+        expected = 'Checkbox được tích chọn thành công (is_selected = True)'
+        with allure.step('1. Mở trang Login'):
+            self.login_page.navigate()
+            time.sleep(1)
+        with allure.step('2. Click chọn checkbox Ghi nhớ đăng nhập'):
+            is_selected = self.login_page.click_remember_me()
+            time.sleep(0.5)
+        with allure.step('3. Xác minh trạng thái checkbox'):
+            actual = 'Checkbox đã được tích chọn' if is_selected else 'Không kích hoạt được checkbox'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_selected)
+        self.assertTrue(is_selected)
+
 if __name__ == '__main__':
     unittest.main()
