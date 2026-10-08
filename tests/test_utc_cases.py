@@ -264,5 +264,34 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Kiểm thử An ninh & Bảo mật')
+    @allure.title('TC_UTC_11: Kiểm thử phòng vệ Cross-Site Scripting (XSS)')
+    @allure.severity(allure.severity_level.BLOCKER)
+    def test_tc11_xss_defense(self):
+        tc_id = 'TC_UTC_11'
+        name = 'Kiểm thử phòng vệ Cross-Site Scripting (XSS)'
+        technique = 'Kiểm thử an ninh bảo mật (XSS Prevention)'
+        steps = '1. Mở trang Login\n2. Nhập payload script độc hại vào ô username\n3. Gửi form và kiểm tra Alert'
+        test_data = 'username="<script>alert(\'XSS_UTC\')</script>", userpwd=\'123\''
+        expected = 'Trình duyệt không bị kích hoạt popup Alert chứa mã độc script'
+        with allure.step('1. Mở trang Login'):
+            self.login_page.navigate()
+            time.sleep(1)
+        with allure.step('2. Nhập XSS payload script'):
+            self.login_page.login("<script>alert('XSS_UTC')</script>", '123456')
+            time.sleep(1.5)
+        with allure.step('3. Kiểm tra xem có popup Alert bất thường không'):
+            alert_present = False
+            try:
+                alert = self.driver.switch_to.alert
+                alert_present = True
+                alert.dismiss()
+            except Exception:
+                alert_present = False
+            is_pass = not alert_present
+            actual = 'Không bị kích hoạt hộp thoại script độc hại' if is_pass else 'Bị khai thác lỗ hổng XSS'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
