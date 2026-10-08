@@ -417,5 +417,23 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Kiểm thử Cấu trúc HTML')
+    @allure.title('TC_UTC_18: Kiểm tra thuộc tính value và trạng thái nút submit')
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_tc18_html_submit_button(self):
+        tc_id = 'TC_UTC_18'
+        name = 'Kiểm tra thuộc tính value và trạng thái nút submit'
+        technique = 'Kiểm thử phần tử nút bấm HTML'
+        steps = '1. Mở trang Login\n2. Kiểm tra thuộc tính value của nút Đăng nhập\n3. Kiểm tra trạng thái is_enabled'
+        test_data = "Thẻ input[type='submit']"
+        expected = "Nút có value='Đăng nhập' và ở trạng thái enabled"
+        self.login_page.navigate()
+        val = self.login_page.get_submit_button_value()
+        enabled = self.login_page.is_submit_button_enabled()
+        is_pass = val == 'Đăng nhập' and enabled
+        actual = f"Nút có value='{val}' và enabled={enabled}" if is_pass else 'Nút không sẵn sàng'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
