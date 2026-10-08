@@ -151,5 +151,26 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_selected)
         self.assertTrue(is_selected)
 
+    @allure.story('Tích hợp Đăng nhập một lần (SSO)')
+    @allure.title("TC_UTC_06: Kiểm tra liên kết OAuth 'Đăng nhập bằng e-mail UTC'")
+    @allure.severity(allure.severity_level.CRITICAL)
+    def test_tc06_oauth_google_button(self):
+        tc_id = 'TC_UTC_06'
+        name = "Kiểm tra liên kết OAuth 'Đăng nhập bằng e-mail UTC'"
+        technique = 'Kiểm thử tích hợp SSO (Single Sign-On)'
+        steps = '1. Mở trang Login\n2. Lấy thuộc tính href của nút OAuth Google\n3. Xác minh domain Google OAuth'
+        test_data = 'Nút Đăng nhập bằng e-mail UTC'
+        expected = 'Liên kết trỏ tới accounts.google.com và chứa client_id xác thực của UTC'
+        with allure.step('1. Mở trang Login'):
+            self.login_page.navigate()
+            time.sleep(1)
+        with allure.step('2. Lấy href liên kết OAuth'):
+            href = self.login_page.get_oauth_google_url()
+        with allure.step('3. Kiểm tra URL đích đến Google OAuth'):
+            is_pass = 'accounts.google.com' in href and 'client_id' in href
+            actual = f'URL OAuth chính xác ({href[:45]}...)' if is_pass else 'URL OAuth không hợp lệ'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
