@@ -381,5 +381,23 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Kiểm thử Cấu trúc HTML')
+    @allure.title("TC_UTC_16: Kiểm tra thẻ <form> có method='post' và action hợp lệ")
+    @allure.severity(allure.severity_level.CRITICAL)
+    def test_tc16_html_form_attributes(self):
+        tc_id = 'TC_UTC_16'
+        name = "Kiểm tra thẻ <form> có method='post' và action hợp lệ"
+        technique = 'Kiểm thử cấu trúc & thuộc tính thẻ HTML Form'
+        steps = '1. Mở trang Login\n2. Đọc thuộc tính action và method của thẻ form\n3. Xác minh an toàn dữ liệu'
+        test_data = 'Thẻ <form> đăng nhập'
+        expected = "Form sử dụng method='post' và action trỏ tới endpoint /Login"
+        self.login_page.navigate()
+        method = self.login_page.get_form_method()
+        action = self.login_page.get_form_action()
+        is_pass = method == 'post' and '/Login' in action
+        actual = f"Form chuẩn bảo mật: method='{method}', action='{action}'" if is_pass else 'Form không đạt chuẩn bảo mật'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
