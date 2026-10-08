@@ -108,5 +108,27 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Chức năng Đăng nhập')
+    @allure.title('TC_UTC_04: Đăng nhập thất bại với tài khoản không tồn tại')
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_tc04_login_non_existent_account(self):
+        tc_id = 'TC_UTC_04'
+        name = 'Đăng nhập thất bại với tài khoản không tồn tại'
+        technique = 'Đoán lỗi (Error Guessing)'
+        steps = '1. Mở trang Login\n2. Nhập tài khoản giả lập không tồn tại\n3. Bấm Đăng nhập'
+        test_data = "username='user_khong_ton_tai_utc_99999', userpwd='Password123!'"
+        expected = 'Hệ thống từ chối đăng nhập và không chuyển tiếp vào dashboard'
+        with allure.step('1. Mở trang Login'):
+            self.login_page.navigate()
+            time.sleep(1)
+        with allure.step('2. Nhập tài khoản không tồn tại'):
+            self.login_page.login('user_khong_ton_tai_utc_99999', 'Password123!')
+            time.sleep(2)
+        with allure.step('3. Kiểm tra chặn truy cập'):
+            is_pass = 'Login' in self.login_page.get_current_url()
+            actual = 'Hệ thống từ chối người dùng không tồn tại' if is_pass else 'Xảy ra lỗi bất thường'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
