@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_06
+Kỹ thuật áp dụng : Kiểm thử tích hợp SSO (Single Sign-On)
+Dữ liệu thử nghiệm: Nút Đăng nhập bằng e-mail UTC
+Các bước thực hiện:
+1. Mở trang Login
+2. Lấy thuộc tính href của nút OAuth Google
+3. Xác minh domain Google OAuth
+
+Kết quả mong đợi : Liên kết trỏ tới accounts.google.com và chứa client_id xác thực của UTC
+Kết quả thực tế  : URL OAuth chính xác (https://accounts.google.com/o/oauth2/auth?res...)
+Trạng thái       : PASS

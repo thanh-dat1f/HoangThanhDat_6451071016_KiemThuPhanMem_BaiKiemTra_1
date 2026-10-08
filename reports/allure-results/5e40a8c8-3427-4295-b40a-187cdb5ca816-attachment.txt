@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_10
+Kỹ thuật áp dụng : Kiểm thử tính toàn vẹn liên kết (Link Integrity)
+Dữ liệu thử nghiệm: Liên kết Hỗ trợ kỹ thuật UTC
+Các bước thực hiện:
+1. Mở trang Login
+2. Lấy href và target của liên kết hỗ trợ kỹ thuật
+3. Kiểm tra tính đúng đắn
+
+Kết quả mong đợi : Link trỏ tới domain hotrokythuat.utc.edu.vn và mở tab mới (target='_blank')
+Kết quả thực tế  : Liên kết chính xác (http://hotrokythuat.utc.edu.vn/) và mở tab mới
+Trạng thái       : PASS

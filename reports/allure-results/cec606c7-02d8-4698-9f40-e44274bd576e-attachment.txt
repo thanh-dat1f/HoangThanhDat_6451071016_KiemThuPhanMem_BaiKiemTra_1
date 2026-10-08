@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_15
+Kỹ thuật áp dụng : Phân tích giá trị biên (Boundary Value Analysis)
+Dữ liệu thử nghiệm: username='A' * 500, userpwd='123'
+Các bước thực hiện:
+1. Mở trang Login
+2. Nhập chuỗi 500 ký tự 'A' vào username
+3. Gửi form và kiểm tra server
+
+Kết quả mong đợi : Hệ thống chịu tải tốt chuỗi cực dài, không phát sinh lỗi 500 Crash
+Kết quả thực tế  : Máy chủ xử lý an toàn chuỗi 500 ký tự, không bị sập dịch vụ
+Trạng thái       : PASS

@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_07
+Kỹ thuật áp dụng : Kiểm thử logic xác thực bảo mật
+Dữ liệu thử nghiệm: email='sinhvien@utc.edu.vn', captcha='00000_SAI'
+Các bước thực hiện:
+1. Mở trang /Login/GetPass
+2. Nhập email và mã captcha sai
+3. Nhấn Tiếp tục
+
+Kết quả mong đợi : Từ chối cấp lại mật khẩu, duy trì tại trang GetPass
+Kết quả thực tế  : Chặn thành công yêu cầu khi mã captcha sai
+Trạng thái       : PASS

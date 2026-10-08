@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_17
+Kỹ thuật áp dụng : Kiểm thử giao diện & Trải nghiệm người dùng (HTML UI)
+Dữ liệu thử nghiệm: Ô username và ô userpwd
+Các bước thực hiện:
+1. Mở trang Login
+2. Đọc placeholder của ô username và userpwd
+3. Xác minh có hướng dẫn rõ ràng
+
+Kết quả mong đợi : Ô username chứa 'Tên đăng nhập', ô userpwd chứa 'Mật khẩu'
+Kết quả thực tế  : Placeholder hợp lệ: 'Tên đăng nhập' và 'Mật khẩu'
+Trạng thái       : PASS

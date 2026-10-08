@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_03
+Kỹ thuật áp dụng : Phân vùng tương đương (EP - Không hợp lệ)
+Dữ liệu thử nghiệm: username='sinhvien_utc', userpwd='SaiMatKhau999'
+Các bước thực hiện:
+1. Mở trang Login
+2. Nhập tài khoản và mật khẩu sai
+3. Bấm Đăng nhập
+
+Kết quả mong đợi : Từ chối xác thực, không cấp quyền vào hệ thống
+Kết quả thực tế  : Chặn đăng nhập thành công, giữ tại màn hình Login
+Trạng thái       : PASS

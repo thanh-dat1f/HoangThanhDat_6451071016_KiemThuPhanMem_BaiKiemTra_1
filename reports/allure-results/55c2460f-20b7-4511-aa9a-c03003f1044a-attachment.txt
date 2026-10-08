@@ -1,0 +1,11 @@
+Mã Test Case : TC_UTC_09
+Kỹ thuật áp dụng : Kiểm thử an ninh bảo mật (Security Testing)
+Dữ liệu thử nghiệm: username="' OR '1'='1' --", userpwd='anypassword'
+Các bước thực hiện:
+1. Mở trang Login
+2. Nhập SQL Injection payload vào ô username
+3. Bấm Đăng nhập
+
+Kết quả mong đợi : Hệ thống không bị sập cú pháp SQL, không lộ dữ liệu database, ở lại trang Login
+Kết quả thực tế  : An toàn trước tấn công SQL Injection cơ bản
+Trạng thái       : PASS
