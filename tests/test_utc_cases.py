@@ -243,5 +243,26 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Kiểm thử Liên kết & Chuyển hướng')
+    @allure.title("TC_UTC_10: Kiểm tra liên kết 'Trung tâm trợ giúp' ở Footer")
+    @allure.severity(allure.severity_level.MINOR)
+    def test_tc10_footer_support_link(self):
+        tc_id = 'TC_UTC_10'
+        name = "Kiểm tra liên kết 'Trung tâm trợ giúp' ở Footer"
+        technique = 'Kiểm thử tính toàn vẹn liên kết (Link Integrity)'
+        steps = '1. Mở trang Login\n2. Lấy href và target của liên kết hỗ trợ kỹ thuật\n3. Kiểm tra tính đúng đắn'
+        test_data = 'Liên kết Hỗ trợ kỹ thuật UTC'
+        expected = "Link trỏ tới domain hotrokythuat.utc.edu.vn và mở tab mới (target='_blank')"
+        with allure.step('1. Mở trang Login'):
+            self.login_page.navigate()
+            time.sleep(1)
+        with allure.step('2. Lấy thuộc tính liên kết Footer'):
+            href, target = self.login_page.get_support_link_details()
+        with allure.step('3. Kiểm tra domain và target mở tab mới'):
+            is_pass = 'hotrokythuat.utc.edu.vn' in href and target == '_blank'
+            actual = f'Liên kết chính xác ({href}) và mở tab mới' if is_pass else 'Liên kết hoặc thuộc tính target sai'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
