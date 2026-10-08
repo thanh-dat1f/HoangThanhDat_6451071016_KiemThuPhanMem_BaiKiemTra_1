@@ -64,5 +64,27 @@ class UTCTestAutomationSuite(unittest.TestCase):
         self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
         self.assertTrue(is_pass)
 
+    @allure.story('Chức năng Đăng nhập')
+    @allure.title('TC_UTC_02: Đăng nhập thất bại khi để trống cả 2 trường')
+    @allure.severity(allure.severity_level.NORMAL)
+    def test_tc02_login_empty_fields(self):
+        tc_id = 'TC_UTC_02'
+        name = 'Đăng nhập thất bại khi để trống cả 2 trường'
+        technique = 'Phân tích giá trị biên & Kiểm tra tính hợp lệ dữ liệu'
+        steps = '1. Mở trang Login\n2. Bỏ trống cả 2 ô username & password\n3. Bấm Đăng nhập'
+        test_data = "username='', userpwd=''"
+        expected = 'Từ chối đăng nhập, duy trì ở màn hình Login'
+        with allure.step('1. Điều hướng đến trang Đăng nhập'):
+            self.login_page.navigate()
+            time.sleep(1)
+        with allure.step('2. Bỏ trống cả 2 ô và nhấn Đăng nhập'):
+            self.login_page.login('', '')
+            time.sleep(1.5)
+        with allure.step('3. Xác minh URL hiện tại vẫn ở trang Login'):
+            is_pass = 'Login' in self.login_page.get_current_url()
+            actual = 'Hệ thống giữ nguyên tại trang đăng nhập, ngăn truy cập trái phép' if is_pass else 'Bị chuyển hướng sai'
+        self.record_result(tc_id, name, technique, steps, test_data, expected, actual, is_pass)
+        self.assertTrue(is_pass)
+
 if __name__ == '__main__':
     unittest.main()
